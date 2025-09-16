@@ -1,0 +1,1593 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мое лето</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ml-dark-blue: #0a1428;
+            --ml-gold: #c89b3c;
+            --ml-light-gold: #f0e6d2;
+            --ml-red: #c8412b;
+            --ml-dark-red: #951c22;
+            --ml-purple: #785a28;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: 
+                linear-gradient(rgba(10, 20, 40, 0.5), rgba(10, 20, 40, 0.5)),
+                url('background.jpg') center/cover fixed;
+            color: var(--ml-light-gold);
+            font-family: 'Roboto', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+        
+        /* Стили для текста в стиле ML */
+        .ml-title {
+            font-family: 'Cinzel', serif;
+            color: var(--ml-gold);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .ml-title::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--ml-gold), transparent);
+        }
+        
+        /* Навигация */
+        header {
+            background-color: rgba(10, 20, 40, 0.9);
+            padding: 15px 0;
+            border-bottom: 2px solid var(--ml-gold);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            /* Убираем все позиционирование */
+            /* position: sticky; */
+            /* top: 0; */
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            width: 60px;
+            height: 60px;
+            margin-right: 20px;
+            border-radius: 50%;
+            border: 2px solid white;
+            box-shadow: 0 0 15px white;
+            background: var(--ml-dark-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--ml-gold);
+            overflow: hidden;
+        }
+        
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        nav li {
+            margin: 0 10px;
+        }
+        
+        nav a {
+            color: var(--ml-light-gold);
+            text-decoration: none;
+            font-family: 'Cinzel', serif;
+            font-weight: 500;
+            font-size: 18px;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        nav a:hover {
+            color: var(--ml-gold);
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--ml-gold);
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        /* Основной контент */
+        main {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        section {
+            background: linear-gradient(to bottom, rgba(20, 30, 48, 0.8), rgba(15, 23, 42, 0.8));
+            border: 1px solid var(--ml-gold);
+            box-shadow: 0 0 20px rgba(200, 155, 60, 0.3);
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+            scroll-margin-top: 100px;
+        }
+        
+        section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--ml-gold), transparent);
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Cinzel', serif;
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--ml-gold);
+        }
+        
+        h2 {
+            font-size: 2rem;
+            color: var(--ml-gold);
+        }
+        
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        /* Плитки фильмов */
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+            justify-content: center;
+            align-items: stretch; /* Выравниваем по высоте */
+        }
+        
+        .media-card {
+            background: linear-gradient(to bottom, rgba(40, 50, 70, 0.8), rgba(30, 40, 60, 0.8));
+            border: 1px solid var(--ml-gold);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            height: 100%; /* Занимает всю доступную высоту */
+            min-height: 500px; /* Фиксированная минимальная высота */
+        }
+        
+        .media-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(200, 155, 60, 0.5);
+        }
+        
+        .media-title {
+            padding: 15px;
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            background: rgba(200, 155, 60, 0.2);
+            color: var(--ml-gold);
+            border-bottom: 1px solid var(--ml-gold);
+            flex-shrink: 0; /* Не сжимается */
+        }
+        
+        .media-poster {
+            width: 100%;
+            height: 350px;
+            object-fit: contain;
+            display: block;
+            background-color: #000;
+            flex-shrink: 0; /* Не сжимается */
+        }
+                
+        .media-description {
+            padding: 15px;
+            font-size: 1rem;
+            flex-grow: 1; /* Занимает все оставшееся пространство */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            min-height: 80px;
+        }
+        
+        /* Игры */
+        .games-grid {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .game-card {
+            background: linear-gradient(to bottom, rgba(40, 50, 70, 0.8), rgba(30, 40, 60, 0.8));
+            border: 1px solid var(--ml-gold);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            width: 280px; /* Фиксированная ширина для карточек */
+            flex-shrink: 0;
+        }
+        
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(200, 155, 60, 0.5);
+        }
+        
+        .game-title {
+            padding: 15px;
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            background: rgba(200, 155, 60, 0.2);
+            color: var(--ml-gold);
+            border-bottom: 1px solid var(--ml-gold);
+        }
+        
+        .game-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .game-description {
+            padding: 15px;
+            font-size: 1rem;
+        }
+        
+        /* Списки */
+        .games-list, .trips-list, .it-list, .suffering-list {
+            list-style: none;
+            padding-left: 20px;
+        }
+        
+        .games-list li, .trips-list li, .it-list li, .suffering-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(200, 155, 60, 0.3);
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .games-list li::before {
+            content: '⚔️';
+            position: absolute;
+            left: 0;
+            top: 10px;
+        }
+        
+        .trips-list li::before {
+            content: '✈️';
+            position: absolute;
+            left: 0;
+            top: 10px;
+        }
+        
+        .it-list li::before {
+            content: '💻';
+            position: absolute;
+            left: 0;
+            top: 10px;
+        }
+        
+        .suffering-list li::before {
+            content: '🔥';
+            position: absolute;
+            left: 0;
+            top: 10px;
+        }
+        
+        .games-list li:last-child, .trips-list li:last-child, 
+        .it-list li:last-child, .suffering-list li:last-child {
+            border-bottom: none;
+        }
+        
+        /* Мини-игры */
+        .game-container {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .game-buttons {
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .game-btn {
+            background: linear-gradient(to bottom, #c89b3c, #785a28);
+            color: var(--ml-dark-blue);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Cinzel', serif;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+        
+        .game-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4);
+            background: linear-gradient(to bottom, #d8ab48, #876a32);
+        }
+        
+        /* Реакция */
+        .reaction-test {
+            background: rgba(15, 23, 42, 0.7);
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px 0;
+            border-radius: 10px;
+            border: 1px solid var(--ml-gold);
+        }
+        
+        .reaction-box {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(to bottom, #0a1428, #0a1428);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            border-radius: 10px;
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            transition: all 0.2s ease;
+            color: white;
+            box-shadow: 0 0 15px rgba(200, 65, 43, 0.5);
+        }
+        
+        .reaction-box.active {
+            background: linear-gradient(to bottom, #0f9d58, #0a7040);
+        }
+        
+        /* Карточная игра */
+        .card-game-container {
+            text-align: center;
+        }
+        
+        .game-mode-buttons {
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .cards-table {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .player-area {
+            text-align: center;
+            min-width: 200px;
+            position: relative;
+        }
+        
+        .player-name {
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: var(--ml-gold);
+        }
+        
+        .card-slot {
+            width: 120px;
+            height: 180px;
+            background: linear-gradient(135deg, #2c3e50, #4a6580);
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+            border: 2px solid var(--ml-gold);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            perspective: 1000px;
+        }
+        
+        .card-back {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #c89b3c, #785a28);
+            border-radius: 8px;
+            background-image: 
+                radial-gradient(circle at center, #f0e6d2 10%, transparent 10.5%),
+                radial-gradient(circle at center, #f0e6d2 10%, transparent 10.5%);
+            background-size: 30px 30px;
+            background-position: 0 0, 15px 15px;
+        }
+        
+        .card {
+            width: 100%;
+            height: 100%;
+            background: white;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 10px;
+            font-family: 'Cinzel', serif;
+            font-weight: bold;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            transform-style: preserve-3d;
+            transition: transform 0.6s ease;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        
+        .card.red {
+            color: #d32f2f;
+        }
+        
+        .card.black {
+            color: #2c3e50;
+        }
+        
+        .card-top, .card-bottom {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            font-size: 1.2rem;
+            line-height: 1.1;
+        }
+        
+        .card-bottom {
+            align-items: flex-end;
+            transform: rotate(180deg);
+        }
+        
+        .card-center {
+            font-size: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-grow: 1;
+        }
+        
+        .game-info {
+            margin: 20px 0;
+            font-size: 1.2rem;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .score-board {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin: 20px 0;
+            font-family: 'Cinzel', serif;
+        }
+        
+        .score {
+            background: rgba(200, 155, 60, 0.2);
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: 1px solid var(--ml-gold);
+        }
+        
+        .draw-card-btn {
+            margin-top: 15px;
+            display: none;
+        }
+        
+        /* Анимации */
+        @keyframes drawCard {
+            0% { transform: rotateY(180deg); opacity: 0; }
+            50% { transform: rotateY(90deg); opacity: 0.5; }
+            100% { transform: rotateY(0deg); opacity: 1; }
+        }
+        
+        @keyframes highlightWin {
+            0% { box-shadow: 0 0 0px gold; }
+            50% { box-shadow: 0 0 20px gold; }
+            100% { box-shadow: 0 0 0px gold; }
+        }
+        
+        .card.draw-animation {
+            animation: drawCard 0.8s ease forwards;
+        }
+        
+        .card-slot.win-animation {
+            animation: highlightWin 1s ease 3;
+        }
+        
+        /* Плеер */
+        .music-player {
+            background: linear-gradient(to bottom, rgba(40, 50, 70, 0.8), rgba(30, 40, 60, 0.8));
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid var(--ml-gold);
+            margin-top: 30px;
+        }
+        
+        .player-controls {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .play-btn {
+            background: linear-gradient(to bottom, #c89b3c, #785a28);
+            border: none;
+            color: var(--ml-dark-blue);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            margin-right: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .progress-container {
+            flex-grow: 1;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            margin-right: 15px;
+            cursor: pointer;
+            min-width: 200px;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(to right, #c89b3c, #f0e6d2);
+            border-radius: 5px;
+            width: 0%;
+        }
+        
+        .volume-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 15px;
+            width: 100%;
+            flex-wrap: wrap;
+        }
+        
+        .volume-slider {
+            width: 100px;
+        }
+        
+        .volume-controls > div {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-right: 20px;
+        }
+        
+        /* Футер */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: rgba(10, 20, 40, 0.9);
+            border-top: 2px solid var(--ml-gold);
+            margin-top: 50px;
+            font-family: 'Cinzel', serif;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        
+        .support-container {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .telegram-btn {
+            width: 40px;
+            height: 40px;
+            background: url('telega.png') no-repeat center center;
+            background-size: contain;
+            border: none;
+            cursor: pointer;
+            margin-bottom: 5px;
+            transition: transform 0.3s ease;
+        }
+        
+        .telegram-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        .support-text {
+            color: white;
+            font-size: 12px;
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+            }
+            
+            .logo {
+                margin: 0 auto 15px;
+            }
+            
+            nav ul {
+                justify-content: center;
+            }
+            
+            .media-grid, .games-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cards-table {
+                gap: 20px;
+            }
+            
+            .player-area, .computer-area {
+                min-width: 150px;
+            }
+            
+            .card-slot {
+                width: 100px;
+                height: 150px;
+            }
+            
+            .player-controls {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .progress-container {
+                width: 100%;
+                margin-right: 0;
+            }
+            
+            .support-container {
+                position: static;
+                transform: none;
+                margin-top: 15px;
+            }
+        }
+        
+        /* Специальные эффекты для Mobile Legends */
+        .ml-badge {
+            display: inline-block;
+            background: linear-gradient(to bottom, #c89b3c, #785a28);
+            color: var(--ml-dark-blue);
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-weight: bold;
+            margin: 0 5px;
+            font-size: 0.9em;
+        }
+        
+        .hero-card {
+            border: 2px solid var(--ml-gold);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+            background: rgba(20, 30, 48, 0.6);
+            position: relative;
+        }
+        
+        .hero-card::before {
+            content: '';
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            right: 5px;
+            bottom: 5px;
+            border: 1px solid var(--ml-gold);
+            border-radius: 8px;
+            pointer-events: none;
+        }
+
+        /* Стили для заполнения контента */
+        .content-placeholder {
+            background: rgba(200, 155, 60, 0.1);
+            border: 1px dashed var(--ml-gold);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            text-align: center;
+            color: var(--ml-light-gold);
+        }
+        
+        /* Активная кнопка */
+        .game-btn.active {
+            background: linear-gradient(to bottom, #0f9d58, #0a7040);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4);
+        }
+        
+        .draw-card-btn.active {
+            background: linear-gradient(to bottom, #0f9d58, #0a7040);
+            box-shadow: 0 0 15px rgba(15, 157, 88, 0.5);
+        }
+
+        header {
+            transition: transform 0.5s ease;
+        }
+
+        /* Плавающее меню */
+        .floating-nav {
+            position: fixed;
+            top: 20px;
+            left: 0;
+            background: rgba(10, 20, 40, 0.98);
+            border: 2px solid var(--ml-gold);
+            border-left: none;
+            border-radius: 0 10px 10px 0;
+            padding: 20px 25px 20px 15px;
+            z-index: 1000;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+            transform: translateX(-100%);
+            transition: transform 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            min-width: 200px;
+        }
+
+        .floating-nav.visible {
+            transform: translateX(0);
+        }
+
+        .floating-nav ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .floating-nav li {
+            margin: 0;
+        }
+
+        .floating-nav a {
+            color: var(--ml-light-gold);
+            text-decoration: none;
+            font-family: 'Cinzel', serif;
+            font-weight: 500;
+            font-size: 18px;
+            padding: 12px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            display: block;
+            position: relative;
+            white-space: nowrap;
+        }
+
+        .floating-nav a:hover {
+            color: var(--ml-gold);
+            background: rgba(200, 155, 60, 0.15);
+            transform: translateX(5px);
+        }
+
+        .floating-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--ml-gold);
+            transition: width 0.3s ease;
+        }
+
+        .floating-nav a:hover::after {
+            width: 100%;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Плавающее меню -->
+    <nav class="floating-nav" id="floating-nav">
+        <ul>
+            <li><a href="#main">Главная</a></li>
+            <li><a href="#trips">Поездки</a></li>
+            <li><a href="#media">Медиа</a></li>
+            <li><a href="#games">Игры</a></li>
+            <li><a href="#it">Смысл IT</a></li>
+            <li><a href="#suffering">Страдания</a></li>
+            <li><a href="#minigames">Мини-игры</a></li>
+        </ul>
+    </nav>
+
+    <div class="overlay"></div>
+    
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <img src="logo.jpg" alt="Логотип">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#main">Главная</a></li>
+                    <li><a href="#trips">Поездки</a></li>
+                    <li><a href="#media">Медиа</a></li>
+                    <li><a href="#games">Игры</a></li>
+                    <li><a href="#it">Смысл IT</a></li>
+                    <li><a href="#suffering">Страдания</a></li>
+                    <li><a href="#minigames">Мини-игры</a></li>
+                </ul>
+            </nav>
+    </header>
+
+    <main>
+        <section id="main">
+            <h1 class="ml-title">Как я провел лето</h1>
+            <div class="content-placeholder">
+                <p>Этим летом моя жизнь шла в особом, рабочем ритме. Я все каникулы посвятил работе, что дало мне ценный опыт и независимость. Свободное время я заполнял яркими эмоциями: блефовал за покерным столом, прокачивал героев в Mobile Legends и открывал для себя новые кинематографические вселенные. Кульминацией лета стала незабываемая поездка во Владивосток, которая подарила море впечатлений и стала идеальной точкой в этих трёх месяцах.</p>
+            </div>
+        </section>
+
+        <section id="trips">
+            <h2 class="ml-title">Поездки <span class="ml-badge">EXPEDITION</span></h2>
+            <div class="content-placeholder">
+                <p>В поездках могу указать то, что летом я посетил Владивосток. Недельная поездка была насыщенной: я гулял по набережным, купался в прохладном заливе и пробовал местную еду. Особенно запомнились жареная корюшка и морской гребешок. Это был лаконичный, но контрастный отдых на фоне рабочего лета, позволивший сменить обстановку и набраться новых впечатлений.</p>
+                <ul class="trips-list"><br><br>
+
+                </ul>
+            </div>
+        </section>
+
+        <section id="media">
+            <h2 class="ml-title">Фильмы, сериалы <span class="ml-badge">ENTERTAINMENT</span></h2>
+            
+            <div class="media-grid" style="justify-items: center;">
+                <div class="media-card">
+                    <div class="media-title"><strong>Выживший</strong></div>
+                    <img src="film1.jpg" alt="Постер 1" class="media-poster">
+                    <div class="media-description">
+                        Фильм «Выживший» мне понравился. Это жестокая и правдоподобная история о борьбе за жизнь в дикой природе. Больше всего впечатлила операторская работа и игра Леонардо Ди Каприо — его боль и ярость чувствуются каждой клеткой.
+                    </div>
+                </div>
+                
+                <div class="media-card">
+                    <div class="media-title"><strong>Во все тяжкие</strong></div>
+                    <img src="film2.jpg" alt="Постер 2" class="media-poster">
+                    <div class="media-description">
+                        Сериал «Во все тяжкие» мне очень понравился. Это гениальное превращение скромного учителя в жестокого наркобарона. Больше всего впечатлил актёрский состав, особенно Брайан Крэнстон, и продуманный до мелочей сюжет.
+                    </div>
+                </div>
+                
+                <div class="media-card">
+                    <div class="media-title"><strong>Острые козырьки</strong></div>
+                    <img src="film3.jpg" alt="Постер 3" class="media-poster">
+                    <div class="media-description">
+                        Сериал «Острые козырьки» мне понравился. Это стильная и атмосферная история о банде Шелби в послевоенном Бирмингеме. Больше всего впечатлили харизматичные персонажи, диалоги и то, как показана эпоха — от костюмов до мрачной атмосферы.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="games">
+            <h2 class="ml-title">Игры <span class="ml-badge">BATTLE</span></h2>
+            
+            <div class="games-grid">
+                <div class="game-card">
+                    <div class="game-title">Mobile Legends</div>
+                    <img src="ML.jpg" alt="Mobile Legends" class="game-image">
+                    <div class="game-description">
+                        Летом я регулярно играл в Mobile Legends. Это было основным развлечением в перерывах между работой. Играл в основном вечерами, оттачивая навыки на разных героях. Достиг неплохих результатов в рейтинговых матчах. Игра стала привычным способом расслабиться и скоротать время.
+                    </div>
+                </div>
+                
+                <div class="game-card">
+                    <div class="game-title">Покер</div>
+                    <img src="poker.jpg" alt="Покер" class="game-image">
+                    <div class="game-description">
+                        Этим летом я активно играл в покер. Игра стала регулярным вечерним занятием после работы. Было много ярких побед и крупных выигрышей, но столько же и проигрышей. В итоге я фактически ушёл в ноль, но получил ценный опыт игры и контроля над эмоциями. Это было скорее интересным времяпрепровождением, чем способом заработка.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="it">
+            <h2 class="ml-title">Смысл IT <span class="ml-badge">UPGRADE</span></h2>
+            <div class="content-placeholder">
+                <p>Этим летом я помогал другу почистить Windows от вирусов. Это было несложно: проверил систему антивирусом, удалил подозрительные программы через панель управления и почистил автозагрузку. Всё заняло около часа. Компьютер стал работать заметно быстрее. Помощь была простой, но полезной, и друг остался доволен.</p>
+                <ul class="it-list"><br><br>
+                </ul>
+
+            </div>
+        </section>
+
+        <section id="suffering">
+            <h2 class="ml-title">Страдания <span class="ml-badge">DEFEAT</span></h2>
+            <div class="content-placeholder">
+                <p>Лето выдалось жарким не только из-за погоды. Работа в душном помещении без нормальной вентиляции отнимала много сил. Вечерами пытался отдохнуть за покером, но сессии часто были неудачными — то сливал банкролл из-за ошибок, то попадал на холодную полосу. Сочетание духоты, усталости и проигрышей создавало ощущение бесконечного пекла. Казалось, что удача обходит меня стороной во всём.</p>
+                <ul class="suffering-list"><br><br>
+
+                </ul>
+            </div>
+        </section>
+
+        <section id="minigames">
+            <h2 class="ml-title">Мини-игры <span class="ml-badge">MINI-GAME</span></h2>
+            <p>Выберите мини-игру:</p>
+            
+            <div class="game-buttons">
+                <button class="game-btn" id="reaction-btn">Тест на реакцию</button>
+                <button class="game-btn" id="cards-btn">Карточная игра</button>
+            </div>
+            
+            <div id="reaction-game" class="game-container" style="display: none;">
+                <h3>Тест на реакцию</h3>
+                <p>Нажмите на квадрат, когда он поменяет цвет. Постарайтесь сделать это как можно быстрее!</p>
+                <div class="reaction-test">
+                    <div class="reaction-box" id="reaction-box">Ждите...</div>
+                </div>
+                <p id="reaction-result">Ваше время: -</p>
+                <button class="game-btn" id="reaction-start">Начать тест</button>
+            </div>
+            
+            <div id="cards-game" class="game-container" style="display: none;">
+                <h3>Карточная игра</h3>
+                <p>У кого номинал карты выше, тот выиграл!</p>
+                
+                <div class="game-mode-buttons">
+                    <button class="game-btn mode-btn active" data-mode="computer">Против компьютера</button>
+                    <button class="game-btn mode-btn" data-mode="players">Два игрока</button>
+                </div>
+                
+                <div class="score-board">
+                    <div class="score">Игрок 1: <span id="player1-score">0</span></div>
+                    <div class="score">Игрок 2: <span id="player2-score">0</span></div>
+                </div>
+                
+                <div class="cards-table">
+                    <div class="player-area">
+                        <div class="player-name">Игрок 1</div>
+                        <div class="card-slot" id="player1-card">
+                            <div class="card-back"></div>
+                        </div>
+                        <button class="game-btn draw-card-btn" id="player1-draw" style="display: none;">Вытянуть карту</button>
+                    </div>
+                    
+                    <div class="player-area">
+                        <div class="player-name">Компьютер</div>
+                        <div class="card-slot" id="player2-card">
+                            <div class="card-back"></div>
+                        </div>
+                        <button class="game-btn draw-card-btn" id="player2-draw" style="display: none;">Вытянуть карту</button>
+                    </div>
+                </div>
+                
+                <div class="game-info" id="game-info">Выберите режим игры и нажмите "Сыграть"</div>
+                
+                <button class="game-btn" id="play-cards">Сыграть</button>
+                <button class="game-btn" id="next-round" style="display: none;">Следующий раунд</button>
+                <button class="game-btn" id="restart-cards" style="display: none;">Новая игры</button>
+            </div>
+        </section>
+
+        <div class="music-player">
+            <h3>Reckless</h3>
+            <div class="player-controls">
+                <button class="play-btn" id="play-btn">▶</button>
+                <div class="progress-container" id="progress-container">
+                    <div class="progress-bar" id="progress-bar"></div>
+                </div>
+                <div class="time" id="time">0:00 / 0:00</div>
+            </div>
+            <div class="volume-controls">
+                <div>
+                    <span>Громкость музыки:</span>
+                    <input type="range" min="0" max="100" value="50" class="volume-slider" id="music-volume">
+                </div>
+                <div>
+                    <span>Громкость звуков:</span>
+                    <input type="range" min="0" max="100" value="50" class="volume-slider" id="sfx-volume">
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© Лето 2025</p>
+        <div class="support-container">
+            <button class="telegram-btn" id="telegram-btn"></button>
+            <span class="support-text">Тех.поддержка</span>
+        </div>
+    </footer>
+
+    <!-- Аудио элементы для звуков -->
+    <audio id="hover-sound" src="hover.wav" preload="auto"></audio>
+    <audio id="click-sound" src="click.wav" preload="auto"></audio>
+    <audio id="background-music" src="music.mp3" preload="auto" loop></audio>
+
+    <script>
+        // Инициализация звуков
+        const hoverSound = document.getElementById('hover-sound');
+        const clickSound = document.getElementById('click-sound');
+        const backgroundMusic = document.getElementById('background-music');
+        
+        // Настройка громкости по умолчанию
+        hoverSound.volume = 0.5;
+        clickSound.volume = 0.5;
+        backgroundMusic.volume = 0.5;
+        
+        // Добавление звуков при наведении и клике на навигационные кнопки
+        document.querySelectorAll('nav a, .game-btn').forEach(element => {
+            // Звук при наведении
+            element.addEventListener('mouseenter', () => {
+                hoverSound.currentTime = 0;
+                hoverSound.volume = document.getElementById('sfx-volume').value / 100;
+                hoverSound.play().catch(e => console.log("Автовоспроизведение звука заблокировано"));
+            });
+            
+            // Звук при клике
+            element.addEventListener('click', () => {
+                clickSound.currentTime = 0;
+                clickSound.volume = document.getElementById('sfx-volume').value / 100;
+                clickSound.play().catch(e => console.log("Автовоспроизведение звука заблокировано"));
+            });
+        });
+        
+        // Кнопка Telegram в футере
+        document.getElementById('telegram-btn').addEventListener('click', () => {
+            window.open('https://t.me/Nooldill', '_blank');
+        });
+        
+        // Работающий музыкальный плеер
+        const playBtn = document.getElementById('play-btn');
+        const progressContainer = document.getElementById('progress-container');
+        const progressBar = document.getElementById('progress-bar');
+        const timeDisplay = document.getElementById('time');
+        const musicVolume = document.getElementById('music-volume');
+        const sfxVolume = document.getElementById('sfx-volume');
+        
+        let isPlaying = false;
+        
+        // Обновление отображения времени
+        function updateTimeDisplay() {
+            const minutes = Math.floor(backgroundMusic.currentTime / 60);
+            const seconds = Math.floor(backgroundMusic.currentTime % 60);
+            const totalMinutes = Math.floor(backgroundMusic.duration / 60);
+            const totalSeconds = Math.floor(backgroundMusic.duration % 60);
+            
+            timeDisplay.textContent = 
+                `${minutes}:${seconds < 10 ? '0' : ''}${seconds} / ${totalMinutes}:${totalSeconds < 10 ? '0' : ''}${totalSeconds}`;
+        }
+        
+        // Обновление прогресс-бара
+        function updateProgress() {
+            const percent = (backgroundMusic.currentTime / backgroundMusic.duration) * 100;
+            progressBar.style.width = `${percent}%`;
+            updateTimeDisplay();
+        }
+        
+        // Переключение воспроизведения/паузы
+        function togglePlay() {
+            if (isPlaying) {
+                backgroundMusic.pause();
+                playBtn.textContent = '▶';
+            } else {
+                backgroundMusic.play().catch(e => console.log("Автовоспроизведение музыки заблокировано"));
+                playBtn.textContent = '❚❚';
+            }
+            isPlaying = !isPlaying;
+        }
+        
+        // Установка позиции воспроизведения при клике на прогресс-бар
+        function setProgress(e) {
+            const width = this.clientWidth;
+            const clickX = e.offsetX;
+            const duration = backgroundMusic.duration;
+            backgroundMusic.currentTime = (clickX / width) * duration;
+        }
+        
+        // Обработчики событий для плеера
+        playBtn.addEventListener('click', togglePlay);
+        backgroundMusic.addEventListener('timeupdate', updateProgress);
+        backgroundMusic.addEventListener('ended', () => {
+            isPlaying = false;
+            playBtn.textContent = '▶';
+            progressBar.style.width = '0%';
+        });
+        progressContainer.addEventListener('click', setProgress);
+        
+        // Регулировка громкости
+        musicVolume.addEventListener('input', () => {
+            backgroundMusic.volume = musicVolume.value / 100;
+        });
+        
+        sfxVolume.addEventListener('input', () => {
+            hoverSound.volume = sfxVolume.value / 100;
+            clickSound.volume = sfxVolume.value / 100;
+        });
+        
+        // Инициализация времени при загрузке метаданных
+        backgroundMusic.addEventListener('loadedmetadata', updateTimeDisplay);
+        
+        // Плавная навигация с учетом высоты шапки
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                
+                if (targetSection) {
+                    const headerHeight = document.querySelector('header').offsetHeight;
+                    const targetPosition = targetSection.offsetTop - headerHeight - 20;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Мини-игры
+        const reactionBtn = document.getElementById('reaction-btn');
+        const cardsBtn = document.getElementById('cards-btn');
+        const reactionGame = document.getElementById('reaction-game');
+        const cardsGame = document.getElementById('cards-game');
+        
+        // Переключение между играми
+        reactionBtn.addEventListener('click', () => {
+            reactionGame.style.display = 'block';
+            cardsGame.style.display = 'none';
+        });
+        
+        cardsBtn.addEventListener('click', () => {
+            cardsGame.style.display = 'block';
+            reactionGame.style.display = 'none';
+        });
+        
+        // Игра "Тест на реакцию" - С ЗАЩИТОТ ОТ ЖУЛИКОВ
+        const reactionBox = document.getElementById('reaction-box');
+        const reactionStart = document.getElementById('reaction-start');
+        const reactionResult = document.getElementById('reaction-result');
+        
+        let startTime, timeoutId;
+        let isWaiting = false;
+        let canClick = false;
+        let earlyClick = false;
+        
+        reactionStart.addEventListener('click', startReactionTest);
+        
+        function startReactionTest() {
+            if (isWaiting) return;
+            
+            isWaiting = true;
+            canClick = false;
+            earlyClick = false;
+            reactionBox.textContent = 'Ждите...';
+            reactionBox.classList.remove('active');
+            reactionResult.textContent = 'Ваше время: -';
+            
+            // Случайная задержка от 2 до 5 секунд
+            const delay = 2000 + Math.random() * 3000;
+            
+            timeoutId = setTimeout(() => {
+                if (!earlyClick) {
+                    reactionBox.classList.add('active');
+                    reactionBox.textContent = 'ЖМИ!';
+                    startTime = new Date().getTime();
+                    canClick = true;
+                }
+                isWaiting = false;
+            }, delay);
+        }
+        
+        reactionBox.addEventListener('click', () => {
+            if (canClick) {
+                // Правильное нажатие
+                const endTime = new Date().getTime();
+                const reactionTime = endTime - startTime;
+                
+                reactionResult.textContent = `Ваше время: ${reactionTime} мс`;
+                reactionBox.classList.remove('active');
+                reactionBox.textContent = 'Ждите...';
+                canClick = false;
+                
+                clearTimeout(timeoutId);
+                isWaiting = false;
+            } else if (isWaiting) {
+                // Раннее нажатие - жулик!
+                earlyClick = true;
+                reactionResult.textContent = 'Нажимайте, когда будет Зеленый!';
+                reactionBox.textContent = 'Ждите...';
+                clearTimeout(timeoutId);
+                isWaiting = false;
+            }
+        });
+        
+        // Карточная игра "Пьяница" с анимациями и поочередным вытягиванием
+        const modeBtns = document.querySelectorAll('.mode-btn');
+        const playCardsBtn = document.getElementById('play-cards');
+        const nextRoundBtn = document.getElementById('next-round');
+        const restartCardsBtn = document.getElementById('restart-cards');
+        const player1DrawBtn = document.getElementById('player1-draw');
+        const player2DrawBtn = document.getElementById('player2-draw');
+        const gameInfo = document.getElementById('game-info');
+        const player1ScoreElem = document.getElementById('player1-score');
+        const player2ScoreElem = document.getElementById('player2-score');
+        const player1CardElem = document.getElementById('player1-card');
+        const player2CardElem = document.getElementById('player2-card');
+        
+        let gameMode = 'computer';
+        let player1Score = 0;
+        let player2Score = 0;
+        let deck = [];
+        let currentRound = 0;
+        let isPlayer2Computer = true;
+        let currentPlayer = 1;
+        let player1Card = null;
+        let player2Card = null;
+        
+        // Выбор режима игры
+        modeBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                modeBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                gameMode = btn.dataset.mode;
+                isPlayer2Computer = gameMode === 'computer';
+                document.querySelector('.player-area:nth-child(2) .player-name').textContent = 
+                    isPlayer2Computer ? 'Компьютер' : 'Игрок 2';
+                resetGame();
+            });
+        });
+        
+        // Инициализация колоды
+        function createDeck() {
+            const suits = ['♥', '♦', '♣', '♠'];
+            const values = ['6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
+            const deck = [];
+            
+            for (let suit of suits) {
+                for (let value of values) {
+                    deck.push({ value, suit, color: suit === '♥' || suit === '♦' ? 'red' : 'black' });
+                }
+            }
+            return deck;
+        }
+        
+        // Перемешивание колоды
+        function shuffleDeck(deck) {
+            for (let i = deck.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [deck[i], deck[j]] = [deck[j], deck[i]];
+            }
+            return deck;
+        }
+        
+        // Сброс игры
+        function resetGame() {
+            player1Score = 0;
+            player2Score = 0;
+            currentRound = 0;
+            player1ScoreElem.textContent = '0';
+            player2ScoreElem.textContent = '0';
+            player1CardElem.innerHTML = '<div class="card-back"></div>';
+            player2CardElem.innerHTML = '<div class="card-back"></div>';
+            gameInfo.textContent = 'Нажмите "Сыграть" чтобы начать';
+            playCardsBtn.style.display = 'inline-block';
+            nextRoundBtn.style.display = 'none';
+            restartCardsBtn.style.display = 'none';
+            player1DrawBtn.style.display = 'none';
+            player2DrawBtn.style.display = 'none';
+            currentPlayer = 1;
+        }
+        
+        // Создание карты
+        function createCardElement(card) {
+            const cardElem = document.createElement('div');
+            cardElem.className = `card ${card.color} draw-animation`;
+            
+            cardElem.innerHTML = `
+                <div class="card-top">${card.value}<br>${card.suit}</div>
+                <div class="card-center">${card.suit}</div>
+                <div class="card-bottom">${card.value}<br>${card.suit}</div>
+            `;
+            
+            return cardElem;
+        }
+        
+        // Значение карты
+        function getCardValue(card) {
+            const values = {'6': 6, '7': 7, '8': 8, '9': 9, '10': 10, 'J': 11, 'Q': 12, 'K': 13, 'A': 14};
+            return values[card.value];
+        }
+        
+        // Сравнение карт (шестёрка бьёт туза)
+        function compareCards(card1, card2) {
+            const val1 = getCardValue(card1);
+            const val2 = getCardValue(card2);
+            
+            // Шестёрка бьёт туза
+            if (val1 === 6 && val2 === 14) return 1;
+            if (val1 === 14 && val2 === 6) return 2;
+            
+            // Обычное сравнение
+            if (val1 > val2) return 1;
+            if (val1 < val2) return 2;
+            return 0; // Ничья
+        }
+        
+        // Вытягивание карты игроком 1
+        player1DrawBtn.addEventListener('click', () => {
+            if (currentPlayer !== 1) return;
+            
+            player1Card = deck[currentRound * 2];
+            player1CardElem.innerHTML = '';
+            player1CardElem.appendChild(createCardElement(player1Card));
+            
+            player1DrawBtn.classList.remove('active');
+            player1DrawBtn.style.display = 'none';
+            
+            if (isPlayer2Computer) {
+                // Против компьютера - компьютер тянет сразу
+                setTimeout(() => {
+                    drawComputerCard();
+                }, 800);
+            } else {
+                // Против игрока - ход переходит ко второму игроку
+                currentPlayer = 2;
+                gameInfo.textContent = 'Ход Игрока 2';
+                player2DrawBtn.style.display = 'inline-block';
+                player2DrawBtn.classList.add('active');
+            }
+        });
+        
+        // Вытягивание карты игроком 2
+        player2DrawBtn.addEventListener('click', () => {
+            if (currentPlayer !== 2) return;
+            
+            player2Card = deck[currentRound * 2 + 1];
+            player2CardElem.innerHTML = '';
+            player2CardElem.appendChild(createCardElement(player2Card));
+            
+            player2DrawBtn.classList.remove('active');
+            player2DrawBtn.style.display = 'none';
+            
+            setTimeout(() => {
+                compareAndScore();
+            }, 800);
+        });
+        
+        // Вытягивание карты компьютером
+        function drawComputerCard() {
+            player2Card = deck[currentRound * 2 + 1];
+            player2CardElem.innerHTML = '';
+            player2CardElem.appendChild(createCardElement(player2Card));
+            
+            setTimeout(() => {
+                compareAndScore();
+            }, 800);
+        }
+        
+        // Сравнение карт и начисление очков
+        function compareAndScore() {
+            const result = compareCards(player1Card, player2Card);
+            
+            if (result === 1) {
+                player1Score++;
+                player1ScoreElem.textContent = player1Score;
+                gameInfo.textContent = 'Игрок 1 выиграл раунд!';
+                player1CardElem.classList.add('win-animation');
+            } else if (result === 2) {
+                player2Score++;
+                player2ScoreElem.textContent = player2Score;
+                gameInfo.textContent = isPlayer2Computer ? 'Компьютер выиграл раунд!' : 'Игрок 2 выиграл раунд!';
+                player2CardElem.classList.add('win-animation');
+            } else {
+                gameInfo.textContent = 'Ничья в раунде!';
+            }
+            
+            currentRound++;
+            currentPlayer = 1;
+            
+            setTimeout(() => {
+                player1CardElem.classList.remove('win-animation');
+                player2CardElem.classList.remove('win-animation');
+                
+                if (currentRound >= 18) {
+                    endGame();
+                } else {
+                    nextRoundBtn.style.display = 'inline-block';
+                }
+            }, 2000);
+        }
+        
+        // Завершение игры
+        function endGame() {
+            gameInfo.textContent = 'Игра окончена! ' + 
+                (player1Score > player2Score ? 'Игрок 1 победил!' : 
+                 player2Score > player1Score ? (isPlayer2Computer ? 'Компьютер победил!' : 'Игрок 2 победил!') : 'Ничья!');
+            nextRoundBtn.style.display = 'none';
+            restartCardsBtn.style.display = 'inline-block';
+        }
+        
+        // Начало игры
+        playCardsBtn.addEventListener('click', () => {
+            deck = shuffleDeck(createDeck());
+            playCardsBtn.style.display = 'none';
+            startRound();
+        });
+        
+        // Начало раунда
+        function startRound() {
+            player1CardElem.innerHTML = '<div class="card-back"></div>';
+            player2CardElem.innerHTML = '<div class="card-back"></div>';
+            
+            if (isPlayer2Computer) {
+                // Против компьютера - игрок 1 тянет карту
+                gameInfo.textContent = 'Ваш ход!';
+                player1DrawBtn.style.display = 'inline-block';
+                player1DrawBtn.classList.add('active');
+            } else {
+                // Против игрока - ход игрока 1
+                gameInfo.textContent = 'Ход Игрока 1';
+                player1DrawBtn.style.display = 'inline-block';
+                player1DrawBtn.classList.add('active');
+            }
+        }
+        
+        // Следующий раунд
+        nextRoundBtn.addEventListener('click', () => {
+            nextRoundBtn.style.display = 'none';
+            startRound();
+        });
+        
+        // Новая игра
+        restartCardsBtn.addEventListener('click', resetGame);
+        
+        // Инициализация игры
+        resetGame();
+
+        // Плавающее меню
+        const header = document.querySelector('header');
+        const floatingNav = document.getElementById('floating-nav');
+        let lastScrollTop = 0;
+
+        // Функция для проверки видимости элемента
+        function isElementInViewport(el) {
+            const rect = el.getBoundingClientRect();
+            return (
+                rect.top >= 0 &&
+                rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            );
+        }
+
+        // Обработчик скролла
+        window.addEventListener('scroll', function() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            // Проверяем, скрыт ли header
+            const headerRect = header.getBoundingClientRect();
+            const isHeaderHidden = headerRect.bottom < 0;
+            
+            if (isHeaderHidden) {
+                floatingNav.classList.add('visible');
+            } else {
+                floatingNav.classList.remove('visible');
+            }
+            
+            lastScrollTop = scrollTop;
+        });
+
+        // Добавляем звуковые эффекты для плавающего меню
+        document.querySelectorAll('.floating-nav a').forEach(element => {
+            // Звук при наведении
+            element.addEventListener('mouseenter', () => {
+                hoverSound.currentTime = 0;
+                hoverSound.volume = document.getElementById('sfx-volume').value / 100;
+                hoverSound.play().catch(e => console.log("Автовоспроизведение звука заблокировано"));
+            });
+            
+            // Звук при клике
+            element.addEventListener('click', (e) => {
+                clickSound.currentTime = 0;
+                clickSound.volume = document.getElementById('sfx-volume').value / 100;
+                clickSound.play().catch(e => console.log("Автовоспроизведение звука заблокировано"));
+                
+                // Плавная прокрутка
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                
+                if (targetSection) {
+                    const headerHeight = document.querySelector('header').offsetHeight;
+                    const targetPosition = targetSection.offsetTop - headerHeight - 20;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+    </script>
+</body>
+</html>
